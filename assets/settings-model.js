@@ -98,13 +98,18 @@ function sanitize(input) {
 
 function mkdirp(dir) {
   var abs = path.resolve(dir);
-  var parts = abs.split(path.sep);
-  var acc = parts[0];
-  var i;
-  for (i = 1; i < parts.length; i += 1) {
-    acc = path.join(acc, parts[i]);
-    if (!fs.existsSync(acc)) {
-      fs.mkdirSync(acc);
+  if (fs.existsSync(abs)) {
+    return;
+  }
+  var parent = path.dirname(abs);
+  if (parent && parent !== abs) {
+    mkdirp(parent);
+  }
+  try {
+    fs.mkdirSync(abs);
+  } catch (error) {
+    if (!fs.existsSync(abs)) {
+      throw error;
     }
   }
 }

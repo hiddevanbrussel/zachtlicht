@@ -2,6 +2,11 @@
 DIR=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
 . "$DIR/common.sh"
 
+mkdir -p "$DATA" || {
+  echo "[-] Map voor collectie aanmaken mislukt." >&2
+  exit 1
+}
+
 NODE=$(node_bin || true)
 if [ -z "$NODE" ]; then
   echo "[-] Node ontbreekt op deze tv." >&2
