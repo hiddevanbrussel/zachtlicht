@@ -1,0 +1,116 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #000000;
+  color: #f4efe6;
+  font-family: sans-serif;
+}
+
+#stage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 92px;
+  left: 0;
+  overflow: hidden;
+  background: #000000;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.frame {
+  position: absolute;
+  width: 116%;
+  height: 116%;
+  left: -8%;
+  top: -8%;
+}
+
+.frame canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#veil {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000000;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+#caption {
+  position: absolute;
+  left: 48px;
+  bottom: 36px;
+  max-width: 760px;
+  opacity: 0;
+}
+
+#caption .plate {
+  padding: 16px 22px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+#caption h2 {
+  margin: 0 0 8px;
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+#caption p {
+  margin: 0 0 6px;
+  color: #e4d8c4;
+  font-size: 20px;
+}
+
+#caption .credit {
+  color: #c8bba6;
+  font-size: 16px;
+}
+
+#bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 92px;
+  padding: 0 20px;
+  background: #14120f;
+  color: #f3efe6;
+}
+
+#bar p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+button {
+  margin-right: 8px;
+  padding: 8px 12px;
+  background: #2a261f;
+  color: #f3efe6;
+  border: 2px solid #4a4338;
+  font: inherit;
+  font-size: 16px;
+}
+
+button[aria-checked="true"] {
+  background: #d7c4a3;
+  color: #1a1612;
+  border-color: #d7c4a3;
+}

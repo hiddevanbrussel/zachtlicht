@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zachtlicht voorbeeld</title>
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <div id="stage">
+    <div id="layer-a" class="layer">
+      <div id="frame-a" class="frame"><canvas id="canvas-a"></canvas></div>
+    </div>
+    <div id="layer-b" class="layer">
+      <div id="frame-b" class="frame"><canvas id="canvas-b"></canvas></div>
+    </div>
+    <div id="veil"></div>
+    <div id="caption">
+      <div class="plate">
+        <h2 id="cap-title"></h2>
+        <p id="cap-meta"></p>
+        <p id="cap-credit" class="credit"></p>
+      </div>
+    </div>
+  </div>
+  <div id="bar">
+    <p id="live">Bezig met ophalen van museumwerken…</p>
+    <div>
+      <button type="button" data-veil="0.25">Lichter</button>
+      <button type="button" data-veil="0.45" aria-checked="true">Normaal</button>
+      <button type="button" data-veil="0.65">Donkerder</button>
+    </div>
+  </div>
+  <script src="preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zachtlicht</title>
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+  <main>
+    <h1>Zachtlicht</h1>
+    <p class="lede">Museumkunst, zacht en gedimd, in plaats van de LG-screensaver.</p>
+    <p id="status" role="status">Bezig met laden…</p>
+
+    <div class="columns">
+      <section class="col">
+        <h2>Screensaver</h2>
+        <button type="button" id="autostart" class="focusable" aria-pressed="false">Autostart: uit</button>
+        <button type="button" id="apply" class="focusable">Nu inschakelen</button>
+        <button type="button" id="revert" class="focusable">Ongedaan maken</button>
+        <button type="button" id="test" class="focusable">Screensaver nu tonen</button>
+        <p class="hint">Nu inschakelen geldt meteen. Na een herstart alleen als autostart aanstaat. Ongedaan maken zet de LG-screensaver terug. Doe dat vóór je deze app verwijdert.</p>
+      </section>
+
+      <section class="col">
+        <h2>Beeld</h2>
+        <span class="group-label" id="veil-label">Sluier</span>
+        <div role="radiogroup" aria-labelledby="veil-label">
+          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.25" aria-checked="false">Lichter</button>
+          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.45" aria-checked="true">Normaal</button>
+          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.65" aria-checked="false">Donkerder</button>
+        </div>
+
+        <span class="group-label" id="size-label">Wazigheid</span>
+        <div role="radiogroup" aria-labelledby="size-label">
+          <button type="button" class="focusable" role="radio" data-group="size" data-value="960" aria-checked="false">Licht zacht</button>
+          <button type="button" class="focusable" role="radio" data-group="size" data-value="640" aria-checked="true">Zacht</button>
+          <button type="button" class="focusable" role="radio" data-group="size" data-value="320" aria-checked="false">Heel zacht</button>
+        </div>
+
+        <span class="group-label" id="duration-label">Tijd per werk</span>
+        <div role="radiogroup" aria-labelledby="duration-label">
+          <button type="button" class="focusable" role="radio" data-group="duration" data-value="45" aria-checked="false">45 seconden</button>
+          <button type="button" class="focusable" role="radio" data-group="duration" data-value="90" aria-checked="true">90 seconden</button>
+          <button type="button" class="focusable" role="radio" data-group="duration" data-value="180" aria-checked="false">3 minuten</button>
+        </div>
+      </section>
+
+      <section class="col col-last">
+        <h2>Musea</h2>
+        <button type="button" id="met" class="focusable" aria-pressed="true">Metropolitan Museum: aan</button>
+        <button type="button" id="artic" class="focusable" aria-pressed="true">Art Institute of Chicago: aan</button>
+        <button type="button" id="rijks" class="focusable" aria-pressed="false">Rijksmuseum: uit</button>
+        <label class="key" for="rijksKey">Rijksmuseum-sleutel
+          <input id="rijksKey" class="focusable" maxlength="80" autocomplete="off" spellcheck="false" value="">
+        </label>
+        <p class="hint">Een sleutel vraag je aan bij het Rijksmuseum. Zonder sleutel tonen het Metropolitan Museum en Chicago het werk. Alleen letters en cijfers.</p>
+        <button type="button" id="refresh" class="focusable">Collectie verversen</button>
+      </section>
+    </div>
+
+    <p class="note">Zet een andere aangepaste screensaver eerst uit. Een eerder opgehaalde collectie blijft werken zonder netwerk. Zonder collectie blijft het scherm donker.</p>
+    <p class="version">Versie 0.1.0</p>
+  </main>
+  <script src="js/webOSTV.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "id": "org.local.zachtlicht",
+  "version": "0.1.0",
+  "vendor": "Zachtlicht",
+  "type": "web",
+  "main": "index.html",
+  "title": "Zachtlicht",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "iconColor": "#14120f",
+  "appDescription": "Zachte, gedimde museumkunst in plaats van de LG-screensaver."
+}
