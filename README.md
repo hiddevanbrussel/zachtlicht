@@ -14,6 +14,18 @@ Zonder eerder opgehaalde collectie en zonder netwerk blijft het scherm donker.
 
 ## Installeren
 
+### Homebrew Channel
+
+1. Open Homebrew Channel.
+2. Open **Settings** en kies **Add repository**.
+3. Plak `https://raw.githubusercontent.com/hiddevanbrussel/zachtlicht/main/repo.json`.
+4. Ga terug naar de lijst en installeer **Zachtlicht**.
+5. Start de app en volg hieronder **Aanzetten**.
+
+De tv moet geroot zijn. Dezelfde URL blijft gelden bij een latere versie: Homebrew Channel leest het manifest van de nieuwste release.
+
+### webOS CLI of Dev Manager
+
 Pakket maken op een computer met de webOS CLI:
 
 ```text
@@ -23,7 +35,7 @@ ares-install --device tv org.local.zachtlicht_0.1.0_all.ipk
 ares-launch --device tv org.local.zachtlicht
 ```
 
-Of open het `.ipk`-bestand in webOS Dev Manager en kies Install, daarna Launch. De tv staat in de lijst met root-login (`root`, poort 22).
+`node tools/pack-ipk.js` maakt hetzelfde pakket in `dist/`, plus het manifest voor een release. Of open het `.ipk`-bestand in webOS Dev Manager en kies Install, daarna Launch. De tv staat in de lijst met root-login (`root`, poort 22).
 
 ## Aanzetten
 

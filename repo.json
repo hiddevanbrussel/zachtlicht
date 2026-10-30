@@ -1,0 +1,11 @@
+{
+  "packages": [
+    {
+      "id": "org.local.zachtlicht",
+      "title": "Zachtlicht",
+      "shortDescription": "Zachte, gedimde museumkunst in plaats van de LG-screensaver.",
+      "iconUri": "https://raw.githubusercontent.com/hiddevanbrussel/zachtlicht/main/largeIcon.png",
+      "manifestUrl": "https://github.com/hiddevanbrussel/zachtlicht/releases/latest/download/org.local.zachtlicht.manifest.json"
+    }
+  ]
+}
