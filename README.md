@@ -31,7 +31,7 @@ Pakket maken op een computer met de webOS CLI:
 ```text
 npm install -g @webosose/ares-cli
 ares-package .
-ares-install --device tv org.local.zachtlicht_0.1.0_all.ipk
+ares-install --device tv org.local.zachtlicht_0.1.1_all.ipk
 ares-launch --device tv org.local.zachtlicht
 ```
 

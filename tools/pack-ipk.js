@@ -5,6 +5,9 @@ var path = require('path');
 var zlib = require('zlib');
 var crypto = require('crypto');
 
+var packedAt = Math.floor(Date.now() / 1000);
+if (packedAt < 1700000000) throw new Error('Pakket-tijdstip is te oud voor de tv.');
+
 var root = path.resolve(__dirname, '..');
 var appinfo = JSON.parse(fs.readFileSync(path.join(root, 'appinfo.json'), 'utf8'));
 var appPrefix = 'usr/palm/applications/' + appinfo.id;
@@ -37,7 +40,7 @@ function tarHeader(name, size, mode, type) {
   writeNumber(header, 108, 8, 0);
   writeNumber(header, 116, 8, 0);
   writeNumber(header, 124, 12, size);
-  writeNumber(header, 136, 12, 0);
+  writeNumber(header, 136, 12, packedAt);
   header[156] = type.charCodeAt(0);
   header.write('ustar\0', 257, 'ascii');
   header.write('00', 263, 'ascii');
@@ -88,7 +91,7 @@ function padSpace(input, length) {
 
 function arMember(name, body) {
   var header = padSpace(name, 16) +
-    padSpace(0, 12) +
+    padSpace(packedAt, 12) +
     '0     ' +
     '0     ' +
     '100644  ' +
@@ -166,6 +169,8 @@ function readTar(gzipped) {
     var name = header.toString('utf8', 0, 100).replace(/\0.*$/, '');
     var sizeText = header.toString('ascii', 124, 136).replace(/\0.*$/, '').trim();
     var size = parseInt(sizeText, 8);
+    var mtime = parseInt(header.toString('ascii', 136, 148).replace(/\0.*$/, '').trim(), 8);
+    if (mtime < 1700000000) throw new Error('Tijdstip in ' + name + ' is te oud voor de tv.');
     var modeText = header.toString('ascii', 100, 108);
     if (!/^[0-7 ]+\0/.test(modeText)) throw new Error('Ongeldig tar-modusveld voor ' + name);
     found.push(name);
@@ -184,6 +189,7 @@ while (cursor + 60 <= ipk.length) {
   if (memberName === 'debian-binary' && memberBody.toString('ascii') !== '2.0\n') {
     throw new Error('debian-binary is niet 2.0');
   }
+  if (memberName === 'control.tar.gz') readTar(memberBody);
   if (memberName === 'data.tar.gz') {
     var packed = readTar(memberBody);
     var appinfoPath = appPrefix + '/appinfo.json';
