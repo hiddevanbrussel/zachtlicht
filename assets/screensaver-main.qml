@@ -90,10 +90,17 @@ WebOSWindow {
                 meta = meta ? meta + "  ·  " + work.year : work.year;
             captionMeta.text = meta;
             captionMeta.visible = meta !== "";
-            captionCredit.text = work.credit || "";
-            captionCredit.visible = captionCredit.text !== "";
             captionBox.opacity = 0;
             captionAnim.restart();
+        }
+
+        function frameOrigin(frame, layer) {
+            var layerWidth = layer.width > 0 ? layer.width : 1920;
+            var layerHeight = layer.height > 0 ? layer.height : 1080;
+            return {
+                x: (layerWidth - frame.width) / 2,
+                y: (layerHeight - frame.height) / 2
+            };
         }
 
         function startDrift(which) {
@@ -104,21 +111,18 @@ WebOSWindow {
             var sAnim = which === "a" ? driftAS : driftBS;
             var anim = which === "a" ? driftA : driftB;
             var sign = ((root.index + root.pass) % 2 === 0) ? 1 : -1;
-            var layerWidth = layer.width > 0 ? layer.width : 1920;
-            var layerHeight = layer.height > 0 ? layer.height : 1080;
-            var baseX = (layerWidth - frame.width) / 2;
-            var baseY = (layerHeight - frame.height) / 2;
-            xAnim.from = baseX;
-            xAnim.to = baseX + (36 * sign);
-            yAnim.from = baseY;
-            yAnim.to = baseY - (24 * sign);
+            var origin = root.frameOrigin(frame, layer);
+            xAnim.from = origin.x;
+            xAnim.to = origin.x + (22 * sign);
+            yAnim.from = origin.y;
+            yAnim.to = origin.y - (14 * sign);
             sAnim.from = 1.0;
-            sAnim.to = 1.06;
+            sAnim.to = 1.05;
             xAnim.duration = root.durationMs;
             yAnim.duration = root.durationMs;
             sAnim.duration = root.durationMs;
-            frame.x = baseX;
-            frame.y = baseY;
+            frame.x = origin.x;
+            frame.y = origin.y;
             frame.scale = 1;
             anim.restart();
         }
@@ -248,17 +252,22 @@ WebOSWindow {
 
             Item {
                 id: frameA
-                width: parent.width * 1.16
-                height: parent.height * 1.16
+                width: parent.width * 1.32
+                height: parent.height * 1.32
+                x: (parent.width - width) / 2
+                y: (parent.height - height) / 2
                 transformOrigin: Item.Center
 
                 Image {
                     id: imageA
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectCrop
+                    horizontalAlignment: Image.AlignHCenter
+                    verticalAlignment: Image.AlignVCenter
                     smooth: true
                     asynchronous: true
                     sourceSize.width: root.imageSize
+                    sourceSize.height: root.imageSize
                     onStatusChanged: root.onImageStatus("a")
                 }
             }
@@ -272,17 +281,22 @@ WebOSWindow {
 
             Item {
                 id: frameB
-                width: parent.width * 1.16
-                height: parent.height * 1.16
+                width: parent.width * 1.32
+                height: parent.height * 1.32
+                x: (parent.width - width) / 2
+                y: (parent.height - height) / 2
                 transformOrigin: Item.Center
 
                 Image {
                     id: imageB
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectCrop
+                    horizontalAlignment: Image.AlignHCenter
+                    verticalAlignment: Image.AlignVCenter
                     smooth: true
                     asynchronous: true
                     sourceSize.width: root.imageSize
+                    sourceSize.height: root.imageSize
                     onStatusChanged: root.onImageStatus("b")
                 }
             }
@@ -297,50 +311,38 @@ WebOSWindow {
         Item {
             id: captionBox
             opacity: 0
-            width: 1000
+            width: Math.min(720, parent.width - 160)
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            anchors.leftMargin: 72
-            anchors.bottomMargin: 64
-
-            Rectangle {
-                anchors.fill: captionColumn
-                anchors.leftMargin: -28
-                anchors.rightMargin: -28
-                anchors.topMargin: -20
-                anchors.bottomMargin: -20
-                color: "#000000"
-                opacity: 0.45
-                radius: 8
-            }
+            anchors.leftMargin: 80
+            anchors.bottomMargin: 68
 
             Column {
                 id: captionColumn
                 width: parent.width
-                spacing: 8
+                spacing: 4
 
                 Text {
                     id: captionTitle
                     width: parent.width
-                    color: "#f4efe6"
-                    font.pixelSize: 36
+                    color: "#ffffff"
+                    opacity: 0.88
+                    font.pixelSize: 22
                     wrapMode: Text.WordWrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
                 }
 
                 Text {
                     id: captionMeta
                     width: parent.width
-                    color: "#e4d8c4"
-                    font.pixelSize: 26
+                    color: "#ffffff"
+                    opacity: 0.55
+                    font.pixelSize: 16
+                    font.weight: Font.Light
                     wrapMode: Text.WordWrap
-                }
-
-                Text {
-                    id: captionCredit
-                    width: parent.width
-                    color: "#c8bba6"
-                    font.pixelSize: 22
-                    wrapMode: Text.WordWrap
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
                 }
             }
         }
@@ -398,9 +400,9 @@ WebOSWindow {
 
         SequentialAnimation {
             id: captionAnim
-            NumberAnimation { target: captionBox; property: "opacity"; to: 1; duration: 1500 }
-            PauseAnimation { duration: 8000 }
-            NumberAnimation { target: captionBox; property: "opacity"; to: 0; duration: 1500 }
+            NumberAnimation { target: captionBox; property: "opacity"; to: 0.7; duration: 2200 }
+            PauseAnimation { duration: 4500 }
+            NumberAnimation { target: captionBox; property: "opacity"; to: 0; duration: 2200 }
         }
     }
 }

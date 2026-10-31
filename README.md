@@ -31,7 +31,7 @@ Pakket maken op een computer met de webOS CLI:
 ```text
 npm install -g @webosose/ares-cli
 ares-package .
-ares-install --device tv org.local.zachtlicht_0.1.3_all.ipk
+ares-install --device tv org.local.zachtlicht_0.1.4_all.ipk
 ares-launch --device tv org.local.zachtlicht
 ```
 
@@ -52,7 +52,7 @@ ares-launch --device tv org.local.zachtlicht
 - **Sluier** dimt het hele beeld. Normaal is een zwarte laag van 45%.
 - **Wazigheid** bepaalt hoe klein het bestand wordt opgehaald voordat het schermvullend wordt: licht zacht (960 px), zacht (640 px), heel zacht (320 px).
 - **Tijd per werk** is 45 seconden, 90 seconden of 3 minuten. Daarna volgt een kruisovergang van 2 seconden.
-- Titel en maker faden kort in en verdwijnen weer.
+- Titel en maker staan klein linksonder, faden zacht in en verdwijnen weer, zonder kader.
 
 Standaard komen de werken uit het Metropolitan Museum of Art (Europese schilderijen, publiek domein) en het Art Institute of Chicago. Lukt Chicago niet, dan vult het Metropolitan de collectie. Het Rijksmuseum vraagt een eigen sleutel van alleen letters en cijfers, aan te vragen bij het museum. De sleutel blijft in `/var/lib/webosbrew/zachtlicht/settings.json` op de tv.
 

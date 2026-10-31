@@ -4,7 +4,7 @@ body {
   height: 100%;
   background: #000000;
   color: #f4efe6;
-  font-family: sans-serif;
+  font-family: "SF Pro Display", "Helvetica Neue", sans-serif;
 }
 
 #stage {
@@ -28,10 +28,10 @@ body {
 
 .frame {
   position: absolute;
-  width: 116%;
-  height: 116%;
-  left: -8%;
-  top: -8%;
+  width: 132%;
+  height: 132%;
+  left: -16%;
+  top: -16%;
 }
 
 .frame canvas {
@@ -55,32 +55,32 @@ body {
 #caption {
   position: absolute;
   left: 48px;
-  bottom: 36px;
-  max-width: 760px;
+  bottom: 40px;
+  max-width: 520px;
   opacity: 0;
-}
-
-#caption .plate {
-  padding: 16px 22px;
-  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
 }
 
 #caption h2 {
-  margin: 0 0 8px;
-  font-family: Georgia, serif;
-  font-size: 32px;
-  font-weight: normal;
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
 }
 
 #caption p {
-  margin: 0 0 6px;
-  color: #e4d8c4;
-  font-size: 20px;
-}
-
-#caption .credit {
-  color: #c8bba6;
-  font-size: 16px;
+  margin: 0;
+  color: #ffffff;
+  opacity: 0.55;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #bar {

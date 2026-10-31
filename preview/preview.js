@@ -23,7 +23,6 @@
   var caption = document.getElementById("caption");
   var capTitle = document.getElementById("cap-title");
   var capMeta = document.getElementById("cap-meta");
-  var capCredit = document.getElementById("cap-credit");
   var live = document.getElementById("live");
 
   window.__zachtlicht = {
@@ -196,7 +195,7 @@
     frame.style.transform = "translate3d(0px, 0px, 0) scale(1)";
     frame.offsetHeight;
     frame.style.transition = "transform " + DURATION + "ms linear";
-    frame.style.transform = "translate3d(" + (36 * sign) + "px, " + (-24 * sign) + "px, 0) scale(1.06)";
+    frame.style.transform = "translate3d(" + (22 * sign) + "px, " + (-14 * sign) + "px, 0) scale(1.05)";
   }
 
   function showCaption(work) {
@@ -207,18 +206,17 @@
     }
     capMeta.textContent = meta;
     capMeta.style.display = meta ? "block" : "none";
-    capCredit.textContent = work.credit || "";
     caption.style.transition = "none";
     caption.style.opacity = "0";
     caption.offsetHeight;
-    caption.style.transition = "opacity 1.5s linear";
-    caption.style.opacity = "1";
+    caption.style.transition = "opacity 2.2s linear";
+    caption.style.opacity = "0.7";
     window.setTimeout(function () {
       if (works[index] !== work) {
         return;
       }
       caption.style.opacity = "0";
-    }, 9500);
+    }, 6700);
   }
 
   function beginHold(which) {
