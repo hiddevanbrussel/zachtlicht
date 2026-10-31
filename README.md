@@ -31,7 +31,7 @@ Pakket maken op een computer met de webOS CLI:
 ```text
 npm install -g @webosose/ares-cli
 ares-package .
-ares-install --device tv org.local.zachtlicht_0.1.4_all.ipk
+ares-install --device tv org.local.zachtlicht_0.1.5_all.ipk
 ares-launch --device tv org.local.zachtlicht
 ```
 
@@ -39,8 +39,8 @@ ares-launch --device tv org.local.zachtlicht
 
 ## Aanzetten
 
-1. Zet een andere aangepaste screensaver, zoals Aerial, eerst uit. Twee apps kunnen niet hetzelfde systeembestand overnemen.
-2. Open Zachtlicht.
+1. Open Zachtlicht. Stond er al een andere aangepaste screensaver, zoals Aerial, dan neemt **Nu inschakelen** die mount over.
+2. Ga verder in de app.
 3. Kies **Nu inschakelen** om het meteen te proberen, of **Autostart: uit** zodat het na elke start van de tv terugkomt.
 4. Kies **Collectie verversen** als het scherm donker blijft.
 5. Kies **Screensaver nu tonen**. Een toets op de afstandsbediening sluit het scherm weer.

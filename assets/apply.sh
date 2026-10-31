@@ -8,11 +8,27 @@ if [ ! -f "$MOUNT_TARGET" ]; then
   exit 1
 fi
 
+if [ ! -f "$QML" ]; then
+  echo "[-] Zachtlicht-bestand ontbreekt: $QML" >&2
+  exit 1
+fi
+
 src=$(mount_source)
-if [ -n "$src" ] && ! is_ours "$src"; then
-  echo "[-] Er staat al een andere screensaver op dit bestand: $src" >&2
-  echo "[-] Zet die eerst uit. Zachtlicht is niet toegepast." >&2
-  exit 2
+if [ -n "$src" ] && is_ours "$src"; then
+  echo "[~] Zachtlicht stond al aan." >&2
+else
+  if [ -n "$src" ]; then
+    echo "[~] Vervangt eerdere screensaver-mount: $src" >&2
+    clear_mount || {
+      echo "[-] De andere screensaver loskoppelen mislukt: $src" >&2
+      exit 2
+    }
+  fi
+  mount --bind "$QML" "$MOUNT_TARGET" || {
+    echo "[-] Mount mislukt." >&2
+    exit 1
+  }
+  echo "[+] Zachtlicht is ingeschakeld." >&2
 fi
 
 mkdir -p "$DATA" || {
@@ -25,16 +41,6 @@ if [ ! -s "$DATA/settings.json" ]; then
     echo "[-] Instellingen wegschrijven mislukt." >&2
     exit 1
   }
-fi
-
-if [ -z "$src" ]; then
-  mount --bind "$QML" "$MOUNT_TARGET" || {
-    echo "[-] Mount mislukt." >&2
-    exit 1
-  }
-  echo "[+] Zachtlicht is ingeschakeld." >&2
-else
-  echo "[~] Zachtlicht stond al aan." >&2
 fi
 
 NODE=$(node_bin || true)

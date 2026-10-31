@@ -47,7 +47,15 @@ mount_source() {
 
 is_ours() {
   case "$1" in
-    */org.local.zachtlicht/assets/screensaver-main.qml) return 0 ;;
-    *) return 1 ;;
+    *org.local.zachtlicht*screensaver-main.qml*) return 0 ;;
   esac
+  return 1
+}
+
+clear_mount() {
+  if [ -z "$(mount_source)" ]; then
+    return 0
+  fi
+  umount "$MOUNT_TARGET" 2>/dev/null || umount -l "$MOUNT_TARGET" 2>/dev/null || return 1
+  return 0
 }

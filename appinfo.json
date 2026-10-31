@@ -1,6 +1,6 @@
 {
   "id": "org.local.zachtlicht",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "vendor": "Zachtlicht",
   "type": "web",
   "main": "index.html",

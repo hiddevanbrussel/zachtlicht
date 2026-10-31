@@ -141,8 +141,8 @@
     markRadios("veil", String(state.veil));
     markRadios("size", String(state.imageSize));
     markRadios("duration", String(state.durationSec));
-    applyButton.disabled = !!state.foreign || !state.qmlExists;
-    autostartButton.disabled = !!state.foreign || !state.qmlExists;
+    applyButton.disabled = !state.qmlExists;
+    autostartButton.disabled = !state.qmlExists;
     if (document.activeElement !== keyInput) {
       keyInput.value = state.rijksKey;
     }
@@ -153,7 +153,7 @@
       return "Op deze tv staat geen QML-screensaver. Zachtlicht is voor webOS 5 tot en met 23.";
     }
     if (status.foreign) {
-      return "Een andere screensaver gebruikt dit bestand:\n" + (status.mountedSource || "onbekend") + "\nZet die eerst uit. Zachtlicht is niet toegepast.";
+      return "Er staat nog een andere screensaver op dit bestand (" + (status.mountedSource || "onbekend") + "). Inschakelen vervangt die door Zachtlicht.";
     }
     var parts = [];
     parts.push(status.ours ? "Zachtlicht staat aan." : "Zachtlicht staat uit.");

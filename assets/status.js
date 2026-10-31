@@ -4,7 +4,8 @@ var model = require("./settings-model.js");
 
 var MOUNT_TARGET = "/usr/palm/applications/com.webos.app.screensaver/qml/main.qml";
 var LINK = "/var/lib/webosbrew/init.d/50-zachtlicht";
-var OURS = "/org.local.zachtlicht/assets/screensaver-main.qml";
+var OURS_MARK = "org.local.zachtlicht";
+var OURS_FILE = "screensaver-main.qml";
 
 function unescapeMount(text) {
   return String(text || "").split("\\040").join(" ");
@@ -64,7 +65,7 @@ function autostartOn() {
     var st = fs.lstatSync(LINK);
     if (st.isSymbolicLink()) {
       var target = fs.readlinkSync(LINK);
-      return target === applyPath || target.indexOf(OURS.replace("/screensaver-main.qml", "/apply.sh")) !== -1;
+      return target === applyPath || target.indexOf("/org.local.zachtlicht/assets/apply.sh") !== -1;
     }
     var text = fs.readFileSync(LINK, "utf8");
     return text.indexOf("/org.local.zachtlicht/assets/apply.sh") !== -1;
@@ -91,7 +92,7 @@ function playlistInfo() {
 }
 
 var source = mountSource();
-var ours = source.indexOf(OURS) !== -1;
+var ours = source.indexOf(OURS_MARK) !== -1 && source.indexOf(OURS_FILE) !== -1;
 var playlist = playlistInfo();
 var qmlExists = false;
 try {
