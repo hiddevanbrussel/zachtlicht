@@ -118,26 +118,33 @@
     }
   }
 
-  function sourceLabel(name, on) {
-    var title = "Metropolitan Museum";
+  function sourceTitle(name) {
     if (name === "artic") {
-      title = "Art Institute of Chicago";
+      return "Art Institute of Chicago";
     }
     if (name === "rijks") {
-      title = "Rijksmuseum";
+      return "Rijksmuseum";
     }
-    return title + ": " + (on ? "aan" : "uit");
+    return "Metropolitan Museum";
+  }
+
+  function setToggleRow(button, label, on) {
+    var labelNode = button.querySelector(".row-label");
+    var valueNode = button.querySelector(".row-value");
+    if (labelNode) {
+      labelNode.textContent = label;
+    }
+    if (valueNode) {
+      valueNode.textContent = on ? "Aan" : "Uit";
+    }
+    button.setAttribute("aria-pressed", on ? "true" : "false");
   }
 
   function render() {
-    autostartButton.textContent = state.autostart ? "Autostart: aan" : "Autostart: uit";
-    autostartButton.setAttribute("aria-pressed", state.autostart ? "true" : "false");
-    metButton.textContent = sourceLabel("met", state.met);
-    metButton.setAttribute("aria-pressed", state.met ? "true" : "false");
-    articButton.textContent = sourceLabel("artic", state.artic);
-    articButton.setAttribute("aria-pressed", state.artic ? "true" : "false");
-    rijksButton.textContent = sourceLabel("rijks", state.rijks);
-    rijksButton.setAttribute("aria-pressed", state.rijks ? "true" : "false");
+    setToggleRow(autostartButton, "Autostart", state.autostart);
+    setToggleRow(metButton, sourceTitle("met"), state.met);
+    setToggleRow(articButton, sourceTitle("artic"), state.artic);
+    setToggleRow(rijksButton, sourceTitle("rijks"), state.rijks);
     markRadios("veil", String(state.veil));
     markRadios("size", String(state.imageSize));
     markRadios("duration", String(state.durationSec));
@@ -275,8 +282,7 @@
 
   function toggleSource(name, button) {
     state[name] = !state[name];
-    button.textContent = sourceLabel(name, state[name]);
-    button.setAttribute("aria-pressed", state[name] ? "true" : "false");
+    setToggleRow(button, sourceTitle(name), state[name]);
   }
 
   function focusables() {

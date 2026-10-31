@@ -8,59 +8,102 @@
 </head>
 <body>
   <main>
-    <h1>Zachtlicht</h1>
-    <p class="lede">Museumkunst, zacht en gedimd, in plaats van de LG-screensaver.</p>
-    <p id="status" role="status">Bezig met laden…</p>
+    <header class="hero">
+      <h1>Zachtlicht</h1>
+      <p class="lede">Museumkunst, zacht en gedimd, in plaats van de LG-screensaver.</p>
+      <p id="status" role="status">Bezig met laden…</p>
+    </header>
 
-    <div class="columns">
-      <section class="col">
-        <h2>Screensaver</h2>
-        <button type="button" id="autostart" class="focusable" aria-pressed="false">Autostart: uit</button>
-        <button type="button" id="apply" class="focusable">Nu inschakelen</button>
-        <button type="button" id="revert" class="focusable">Ongedaan maken</button>
-        <button type="button" id="test" class="focusable">Screensaver nu tonen</button>
-        <p class="hint">Nu inschakelen geldt meteen. Na een herstart alleen als autostart aanstaat. Ongedaan maken zet de LG-screensaver terug. Doe dat vóór je deze app verwijdert.</p>
-      </section>
+    <section class="block">
+      <h2>Screensaver</h2>
+      <div class="panel">
+        <button type="button" id="autostart" class="row focusable" aria-pressed="false">
+          <span class="row-label">Autostart</span>
+          <span class="row-value">Uit</span>
+        </button>
+        <button type="button" id="apply" class="row focusable">
+          <span class="row-label">Nu inschakelen</span>
+        </button>
+        <button type="button" id="revert" class="row focusable">
+          <span class="row-label">Ongedaan maken</span>
+        </button>
+        <button type="button" id="test" class="row focusable">
+          <span class="row-label">Screensaver nu tonen</span>
+        </button>
+      </div>
+      <p class="hint">Nu inschakelen geldt meteen. Na een herstart alleen als autostart aanstaat. Ongedaan maken zet de LG-screensaver terug. Doe dat vóór je deze app verwijdert.</p>
+    </section>
 
-      <section class="col">
-        <h2>Beeld</h2>
-        <span class="group-label" id="veil-label">Sluier</span>
-        <div role="radiogroup" aria-labelledby="veil-label">
-          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.25" aria-checked="false">Lichter</button>
-          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.45" aria-checked="true">Normaal</button>
-          <button type="button" class="focusable" role="radio" data-group="veil" data-value="0.65" aria-checked="false">Donkerder</button>
-        </div>
+    <section class="block">
+      <h2>Beeld</h2>
+      <p class="group-label" id="veil-label">Sluier</p>
+      <div class="panel" role="radiogroup" aria-labelledby="veil-label">
+        <button type="button" class="row focusable" role="radio" data-group="veil" data-value="0.25" aria-checked="false">
+          <span class="row-label">Lichter</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="veil" data-value="0.45" aria-checked="true">
+          <span class="row-label">Normaal</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="veil" data-value="0.65" aria-checked="false">
+          <span class="row-label">Donkerder</span>
+        </button>
+      </div>
 
-        <span class="group-label" id="size-label">Wazigheid</span>
-        <div role="radiogroup" aria-labelledby="size-label">
-          <button type="button" class="focusable" role="radio" data-group="size" data-value="960" aria-checked="false">Licht zacht</button>
-          <button type="button" class="focusable" role="radio" data-group="size" data-value="640" aria-checked="true">Zacht</button>
-          <button type="button" class="focusable" role="radio" data-group="size" data-value="320" aria-checked="false">Heel zacht</button>
-        </div>
+      <p class="group-label" id="size-label">Wazigheid</p>
+      <div class="panel" role="radiogroup" aria-labelledby="size-label">
+        <button type="button" class="row focusable" role="radio" data-group="size" data-value="960" aria-checked="false">
+          <span class="row-label">Licht zacht</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="size" data-value="640" aria-checked="true">
+          <span class="row-label">Zacht</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="size" data-value="320" aria-checked="false">
+          <span class="row-label">Heel zacht</span>
+        </button>
+      </div>
 
-        <span class="group-label" id="duration-label">Tijd per werk</span>
-        <div role="radiogroup" aria-labelledby="duration-label">
-          <button type="button" class="focusable" role="radio" data-group="duration" data-value="45" aria-checked="false">45 seconden</button>
-          <button type="button" class="focusable" role="radio" data-group="duration" data-value="90" aria-checked="true">90 seconden</button>
-          <button type="button" class="focusable" role="radio" data-group="duration" data-value="180" aria-checked="false">3 minuten</button>
-        </div>
-      </section>
+      <p class="group-label" id="duration-label">Tijd per werk</p>
+      <div class="panel" role="radiogroup" aria-labelledby="duration-label">
+        <button type="button" class="row focusable" role="radio" data-group="duration" data-value="45" aria-checked="false">
+          <span class="row-label">45 seconden</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="duration" data-value="90" aria-checked="true">
+          <span class="row-label">90 seconden</span>
+        </button>
+        <button type="button" class="row focusable" role="radio" data-group="duration" data-value="180" aria-checked="false">
+          <span class="row-label">3 minuten</span>
+        </button>
+      </div>
+    </section>
 
-      <section class="col col-last">
-        <h2>Musea</h2>
-        <button type="button" id="met" class="focusable" aria-pressed="true">Metropolitan Museum: aan</button>
-        <button type="button" id="artic" class="focusable" aria-pressed="true">Art Institute of Chicago: aan</button>
-        <button type="button" id="rijks" class="focusable" aria-pressed="false">Rijksmuseum: uit</button>
-        <label class="key" for="rijksKey">Rijksmuseum-sleutel
-          <input id="rijksKey" class="focusable" maxlength="80" autocomplete="off" spellcheck="false" value="">
+    <section class="block">
+      <h2>Musea</h2>
+      <div class="panel">
+        <button type="button" id="met" class="row focusable" aria-pressed="true">
+          <span class="row-label">Metropolitan Museum</span>
+          <span class="row-value">Aan</span>
+        </button>
+        <button type="button" id="artic" class="row focusable" aria-pressed="true">
+          <span class="row-label">Art Institute of Chicago</span>
+          <span class="row-value">Aan</span>
+        </button>
+        <button type="button" id="rijks" class="row focusable" aria-pressed="false">
+          <span class="row-label">Rijksmuseum</span>
+          <span class="row-value">Uit</span>
+        </button>
+        <label class="row key" for="rijksKey">
+          <span class="row-label">Rijksmuseum-sleutel</span>
+          <input id="rijksKey" class="focusable" maxlength="80" autocomplete="off" spellcheck="false" value="" placeholder="Alleen letters en cijfers">
         </label>
-        <p class="hint">Een sleutel vraag je aan bij het Rijksmuseum. Zonder sleutel tonen het Metropolitan Museum en Chicago het werk. Alleen letters en cijfers.</p>
-        <button type="button" id="refresh" class="focusable">Collectie verversen</button>
-      </section>
-    </div>
+        <button type="button" id="refresh" class="row focusable">
+          <span class="row-label">Collectie verversen</span>
+        </button>
+      </div>
+      <p class="hint">Een sleutel vraag je aan bij het Rijksmuseum. Zonder sleutel tonen het Metropolitan Museum en Chicago het werk.</p>
+    </section>
 
-    <p class="note">Zet een andere aangepaste screensaver eerst uit. Een eerder opgehaalde collectie blijft werken zonder netwerk. Zonder collectie blijft het scherm donker.</p>
-    <p class="version">Versie 0.1.0</p>
+    <p class="note">Zet een andere aangepaste screensaver eerst uit als je die nog actief gebruikt. Een eerder opgehaalde collectie blijft werken zonder netwerk. Zonder collectie blijft het scherm donker.</p>
+    <p class="version">Versie 0.1.6</p>
   </main>
   <script src="js/webOSTV.js"></script>
   <script src="js/settings.js"></script>
