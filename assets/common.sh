@@ -14,13 +14,33 @@ node_bin() {
   return 1
 }
 
+# Exact bind on MOUNT_TARGET only. findmnt --target would report the parent
+# filesystem (often "overlay") even when nothing is bound over the QML file.
 mount_source() {
   _src=""
-  if command -v findmnt >/dev/null 2>&1; then
-    _src=$(findmnt -n -o SOURCE --target "$MOUNT_TARGET" 2>/dev/null || true)
+  if [ -r /proc/self/mountinfo ]; then
+    _src=$(awk -v t="$MOUNT_TARGET" '
+      {
+        root = $4
+        mp = $5
+        gsub(/\\040/, " ", root)
+        gsub(/\\040/, " ", mp)
+        if (mp == t) last = root
+      }
+      END {
+        if (last != "") print last
+      }
+    ' /proc/self/mountinfo 2>/dev/null || true)
   fi
   if [ -z "$_src" ] && [ -r /proc/mounts ]; then
-    _src=$(awk -v t="$MOUNT_TARGET" '$2==t {print $1; exit}' /proc/mounts 2>/dev/null || true)
+    _src=$(awk -v t="$MOUNT_TARGET" '
+      $2 == t {
+        src = $1
+        gsub(/\\040/, " ", src)
+        print src
+        exit
+      }
+    ' /proc/mounts 2>/dev/null || true)
   fi
   printf '%s' "$_src"
 }

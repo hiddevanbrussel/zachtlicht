@@ -6,19 +6,53 @@ var MOUNT_TARGET = "/usr/palm/applications/com.webos.app.screensaver/qml/main.qm
 var LINK = "/var/lib/webosbrew/init.d/50-zachtlicht";
 var OURS = "/org.local.zachtlicht/assets/screensaver-main.qml";
 
+function unescapeMount(text) {
+  return String(text || "").split("\\040").join(" ");
+}
+
 function mountSource() {
   var text;
+  var lines;
+  var i;
+  var fields;
+  var root;
+  var mp;
+  var last = "";
+
+  try {
+    text = fs.readFileSync("/proc/self/mountinfo", "utf8");
+    lines = text.split("\n");
+    for (i = 0; i < lines.length; i += 1) {
+      if (!lines[i]) {
+        continue;
+      }
+      fields = lines[i].split(" ");
+      if (fields.length < 5) {
+        continue;
+      }
+      root = unescapeMount(fields[3]);
+      mp = unescapeMount(fields[4]);
+      if (mp === MOUNT_TARGET) {
+        last = root;
+      }
+    }
+    if (last) {
+      return last;
+    }
+  } catch (error) {
+    last = "";
+  }
+
   try {
     text = fs.readFileSync("/proc/mounts", "utf8");
   } catch (error) {
     return "";
   }
-  var lines = text.split("\n");
-  var i;
+  lines = text.split("\n");
   for (i = 0; i < lines.length; i += 1) {
-    var fields = lines[i].split(" ");
-    if (fields.length >= 2 && fields[1] === MOUNT_TARGET) {
-      return fields[0].split("\\040").join(" ");
+    fields = lines[i].split(" ");
+    if (fields.length >= 2 && unescapeMount(fields[1]) === MOUNT_TARGET) {
+      return unescapeMount(fields[0]);
     }
   }
   return "";

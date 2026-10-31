@@ -31,7 +31,7 @@ Pakket maken op een computer met de webOS CLI:
 ```text
 npm install -g @webosose/ares-cli
 ares-package .
-ares-install --device tv org.local.zachtlicht_0.1.2_all.ipk
+ares-install --device tv org.local.zachtlicht_0.1.3_all.ipk
 ares-launch --device tv org.local.zachtlicht
 ```
 
@@ -60,12 +60,14 @@ Standaard komen de werken uit het Metropolitan Museum of Art (Europese schilderi
 
 Kies **Ongedaan maken** vóór je de app verwijdert. Dat haalt de mount weg en verwijdert het opstartscript, zodat de LG-screensaver terug is.
 
-Blijft het scherm daarna zwart, dan staat de mount er nog. Via SSH:
+Blijft het scherm daarna zwart, of meldt de app ten onrechte een andere screensaver terwijl je er geen hebt, dan kun je de mount via SSH loskoppelen:
 
 ```text
 umount /usr/palm/applications/com.webos.app.screensaver/qml/main.qml
 rm -f /var/lib/webosbrew/init.d/50-zachtlicht
 ```
+
+Vanaf 0.1.3 kijkt Zachtlicht alleen naar een echte bind-mount op dat bestand, niet naar het onderliggende `overlay`-bestandssysteem van de tv.
 
 ## Voorbeeld op de computer
 
